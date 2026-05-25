@@ -408,7 +408,7 @@
             display: none;
         }
 
-        /* ===== ИСПРАВЛЕННЫЙ СЛАЙДЕР ДЛЯ ДРЕСС-КОДА: идеальное центрирование, без черных зон ===== */
+        /* СЛАЙДЕРЫ С БЕСКОНЕЧНОЙ ПРОКРУТКОЙ */
         .dresscode-slider-wrapper {
             width: 100%;
             position: relative;
@@ -421,14 +421,12 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             padding: 8px 0;
-            /* Ключевой момент: отступы для центрирования */
             scroll-padding: 0 calc(50% - 130px);
         }
         .dresscode-slider-container::-webkit-scrollbar { display: none; }
         .dresscode-slider-track {
             display: flex;
             gap: 20px;
-            /* Динамический отступ, который гарантирует центрирование первого и последнего слайда */
             padding: 0 calc(50% - min(35%, 180px));
         }
         .dresscode-slide {
@@ -478,7 +476,7 @@
         .dresscode-arrow-prev { left: 10px; }
         .dresscode-arrow-next { right: 10px; }
 
-        /* Слайдер для фото пары (улучшенное центрирование) */
+        /* Слайдер для фото пары */
         .slider-wrapper {
             width: 100%;
             position: relative;
@@ -550,7 +548,7 @@
         .wishes-text p { margin-bottom: 14px; }
 
         /* Анкета */
-        .pre-survey-text {
+        .survey-intro {
             font-size: clamp(13px, 3.5vw, 15px);
             max-width: 550px;
             margin: 0 auto 20px;
@@ -638,7 +636,6 @@
             100% { opacity: 0; transform: scale(1.5); }
         }
 
-        /* Адаптивные настройки для мобильных устройств */
         @media (max-width: 768px) {
             .fullscreen-block { padding: 55px 30px; }
             .color-swatch { width: 40px; height: 40px; }
@@ -740,7 +737,7 @@
             </div>
         </section>
 
-        <!-- ДРЕСС-КОД (удален костюм 6, исправлено центрирование) -->
+        <!-- ДРЕСС-КОД (удален костюм 6) -->
         <section class="fullscreen-block" id="dresscodeBlock">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-text">
@@ -763,7 +760,6 @@
                 <div class="toggle-option" data-gallery="suit">Для него</div>
             </div>
 
-            <!-- Галерея платьев -->
             <div id="gallery-dress" class="gallery-container">
                 <div class="dresscode-slider-wrapper">
                     <div class="dresscode-slider-arrow dresscode-arrow-prev" onclick="slideDressPrev('dressSlider')">‹</div>
@@ -781,7 +777,6 @@
                 </div>
             </div>
 
-            <!-- Галерея костюмов (удален костюм6.jpg) -->
             <div id="gallery-suit" class="gallery-container gallery-hidden">
                 <div class="dresscode-slider-wrapper">
                     <div class="dresscode-slider-arrow dresscode-arrow-prev" onclick="slideDressPrev('suitSlider')">‹</div>
@@ -825,13 +820,12 @@
             </div>
         </section>
 
+        <!-- АНКЕТА ГОСТЯ (порядок исправлен: сначала "Пожалуйста, подтвердите", потом "Мы стараемся") -->
         <section class="fullscreen-block" id="surveyBlock">
             <h2 class="section-title">Анкета гостя</h2>
-            <div class="pre-survey-text">
-               
-            <p style="margin-top: 12px;">Мы очень стараемся сделать праздник незабываемым, поэтому будем рады, если Вы заполните анкету ниже, чтобы мы учли все детали:</p>
-                            <p>Пожалуйста, подтвердите свое присутствие до 15 июля, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
-
+            <div class="survey-intro">
+                <p>Пожалуйста, подтвердите свое присутствие до 15 июля, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
+                <p style="margin-top: 12px;">Мы очень стараемся сделать праздник незабываемым, поэтому будем рады, если Вы заполните анкету ниже, чтобы мы учли все детали:</p>
             </div>
             <form class="survey-form" id="guest-survey" action="https://formspree.io/f/mnjwebjo" method="POST">
                 <div class="form-group"><label class="form-label">Ваше имя и фамилия</label><input type="text" name="name" class="form-input" placeholder="Иван Иванов" required></div>
@@ -883,7 +877,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // ... (весь предыдущий код остаётся без изменений, кроме удаления костюма6 и улучшения слайдеров)
             const openBtn = document.getElementById('open-btn');
             const envelopeOverlay = document.getElementById('envelope-overlay');
             const mainContent = document.getElementById('main-content');
@@ -966,21 +959,54 @@
             }, { threshold: 0.3 });
             timelineObserver.observe(document.getElementById('timelineBlock'));
 
-            // Функции для слайдеров (обновлены для лучшего UX)
+            // Функция для бесконечной прокрутки слайдеров
+            function setupInfiniteScroll(container, slides, slideSelector) {
+                if (!container || slides.length === 0) return;
+                
+                const cloneSlides = () => {
+                    const track = container.querySelector('.dresscode-slider-track, .slider-track');
+                    if (!track) return;
+                    const originalSlides = Array.from(track.children);
+                    if (originalSlides.length === 0) return;
+                    // Клонируем все слайды для бесконечного эффекта
+                    originalSlides.forEach(slide => {
+                        const clone = slide.cloneNode(true);
+                        track.appendChild(clone);
+                    });
+                };
+                cloneSlides();
+            }
+
+            // Функции навигации с бесконечным эффектом (прокрутка до нужного места)
             window.slideDressPrev = (containerId) => {
                 const container = document.getElementById(containerId);
                 if (container) {
                     const slideWidth = container.querySelector('.dresscode-slide')?.offsetWidth || 280;
                     const gap = 20;
-                    container.scrollBy({ left: -(slideWidth + gap), behavior: 'smooth' });
+                    const newScrollLeft = container.scrollLeft - (slideWidth + gap);
+                    container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+                    // Эффект бесконечности: если дошли до начала, через небольшую задержку прокрутим в конец
+                    setTimeout(() => {
+                        if (container.scrollLeft <= 10) {
+                            const maxScroll = container.scrollWidth - container.clientWidth;
+                            container.scrollTo({ left: maxScroll - 50, behavior: 'auto' });
+                        }
+                    }, 300);
                 }
             };
+            
             window.slideDressNext = (containerId) => {
                 const container = document.getElementById(containerId);
                 if (container) {
                     const slideWidth = container.querySelector('.dresscode-slide')?.offsetWidth || 280;
                     const gap = 20;
-                    container.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
+                    const newScrollLeft = container.scrollLeft + (slideWidth + gap);
+                    container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+                    setTimeout(() => {
+                        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                            container.scrollTo({ left: 50, behavior: 'auto' });
+                        }
+                    }, 300);
                 }
             };
             
@@ -989,15 +1015,29 @@
                 if (container) {
                     const slideWidth = container.querySelector('.slide')?.offsetWidth || 300;
                     const gap = 20;
-                    container.scrollBy({ left: -(slideWidth + gap), behavior: 'smooth' });
+                    const newScrollLeft = container.scrollLeft - (slideWidth + gap);
+                    container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+                    setTimeout(() => {
+                        if (container.scrollLeft <= 10) {
+                            const maxScroll = container.scrollWidth - container.clientWidth;
+                            container.scrollTo({ left: maxScroll - 50, behavior: 'auto' });
+                        }
+                    }, 300);
                 }
             };
+            
             window.slideNext = (containerId) => {
                 const container = document.getElementById(containerId);
                 if (container) {
                     const slideWidth = container.querySelector('.slide')?.offsetWidth || 300;
                     const gap = 20;
-                    container.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
+                    const newScrollLeft = container.scrollLeft + (slideWidth + gap);
+                    container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+                    setTimeout(() => {
+                        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                            container.scrollTo({ left: 50, behavior: 'auto' });
+                        }
+                    }, 300);
                 }
             };
 
@@ -1023,6 +1063,12 @@
                 container.addEventListener('scroll', updateActiveSlide);
                 container.addEventListener('scrollend', updateActiveSlide);
                 setTimeout(updateActiveSlide, 100);
+                // Добавляем клоны для бесконечности
+                const track = container.querySelector('.dresscode-slider-track');
+                if (track && slides.length > 0) {
+                    const clones = Array.from(slides).map(s => s.cloneNode(true));
+                    clones.forEach(clone => track.appendChild(clone));
+                }
             }
 
             function initNormalSlider(containerId) {
@@ -1047,6 +1093,12 @@
                 container.addEventListener('scroll', updateActiveSlide);
                 container.addEventListener('scrollend', updateActiveSlide);
                 setTimeout(updateActiveSlide, 100);
+                // Добавляем клоны для бесконечности
+                const track = container.querySelector('.slider-track');
+                if (track && slides.length > 0) {
+                    const clones = Array.from(slides).map(s => s.cloneNode(true));
+                    clones.forEach(clone => track.appendChild(clone));
+                }
             }
 
             const galleryDress = document.getElementById('gallery-dress');
