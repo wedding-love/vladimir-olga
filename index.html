@@ -408,11 +408,10 @@
             display: none;
         }
 
-        /* Слайдеры для дресс-кода — увеличенные фото */
+        /* ИСПРАВЛЕННЫЙ СЛАЙДЕР ДЛЯ ДРЕСС-КОДА — с центрированием и отступами */
         .dresscode-slider-wrapper {
             width: 100%;
             position: relative;
-            padding: 0 50px;
             margin-top: 10px;
         }
         .dresscode-slider-container {
@@ -422,12 +421,13 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             padding: 8px 0;
+            scroll-padding: 0 15%;
         }
         .dresscode-slider-container::-webkit-scrollbar { display: none; }
         .dresscode-slider-track {
             display: flex;
-            gap: 16px;
-            padding: 0 2%;
+            gap: 20px;
+            padding: 0 calc(50% - 36%);
         }
         .dresscode-slide {
             flex: 0 0 72%;
@@ -440,7 +440,6 @@
             opacity: 1;
             transform: scale(1);
         }
-        /* Увеличенное фото: больше размер, выше */
         .dresscode-img {
             width: 100%;
             height: auto;
@@ -474,8 +473,8 @@
             background: var(--gold);
             color: var(--black);
         }
-        .dresscode-arrow-prev { left: 0; }
-        .dresscode-arrow-next { right: 0; }
+        .dresscode-arrow-prev { left: 10px; }
+        .dresscode-arrow-next { right: 10px; }
 
         /* Слайдер для фото пары (обычный) */
         .slider-wrapper {
@@ -641,13 +640,16 @@
             .color-swatch { width: 40px; height: 40px; }
             .palette-row { gap: 10px; }
             .dresscode-slide { flex: 0 0 80%; }
-            .dresscode-slider-wrapper { padding: 0 38px; }
+            .dresscode-slider-track { padding: 0 calc(50% - 40%); }
             .dresscode-slider-arrow { width: 36px; height: 36px; font-size: 20px; }
+            .dresscode-arrow-prev { left: 5px; }
+            .dresscode-arrow-next { right: 5px; }
         }
         @media (max-width: 600px) {
             .color-swatch { width: 36px; height: 36px; }
             .palette-row { gap: 8px; }
             .dresscode-slide { flex: 0 0 88%; }
+            .dresscode-slider-track { padding: 0 calc(50% - 44%); }
         }
         @media (max-width: 480px) {
             .fullscreen-block { padding: 45px 20px; }
@@ -657,9 +659,9 @@
             .timeline-icon-wrapper { width: 36px; height: 36px; }
             .timeline-icon { width: 16px; height: 16px; }
             .timeline-time { font-size: 15px; }
-            .dresscode-slider-wrapper { padding: 0 28px; }
-            .dresscode-slider-arrow { width: 32px; height: 32px; font-size: 18px; }
             .dresscode-slide { flex: 0 0 92%; }
+            .dresscode-slider-track { padding: 0 calc(50% - 46%); }
+            .dresscode-slider-arrow { width: 32px; height: 32px; font-size: 18px; }
         }
     </style>
 </head>
@@ -730,7 +732,7 @@
             </div>
         </section>
 
-        <!-- ДРЕСС-КОД с увеличенными фото -->
+        <!-- ДРЕСС-КОД с исправленным слайдером (центрирование) -->
         <section class="fullscreen-block" id="dresscodeBlock">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-text">
@@ -749,11 +751,11 @@
             </div>
 
             <div class="dresscode-toggle">
-                <div class="toggle-option active" data-gallery="dress">Платья</div>
-                <div class="toggle-option" data-gallery="suit">Костюмы</div>
+                <div class="toggle-option active" data-gallery="dress">Для неё</div>
+                <div class="toggle-option" data-gallery="suit">Для него</div>
             </div>
 
-            <!-- Галерея платьев (увеличенные фото) -->
+            <!-- Галерея платьев -->
             <div id="gallery-dress" class="gallery-container">
                 <div class="dresscode-slider-wrapper">
                     <div class="dresscode-slider-arrow dresscode-arrow-prev" onclick="slideDressPrev('dressSlider')">‹</div>
@@ -771,7 +773,7 @@
                 </div>
             </div>
 
-            <!-- Галерея костюмов (увеличенные фото, такого же размера) -->
+            <!-- Галерея костюмов -->
             <div id="gallery-suit" class="gallery-container gallery-hidden">
                 <div class="dresscode-slider-wrapper">
                     <div class="dresscode-slider-arrow dresscode-arrow-prev" onclick="slideDressPrev('suitSlider')">‹</div>
@@ -783,12 +785,10 @@
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм3.jpg" alt="Костюм 3"></div>
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм5.jpg" alt="Костюм 5"></div>
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм6.jpg" alt="Костюм 6"></div>
-                                                   <div class="dresscode-slide"><img class="dresscode-img" src="костюм7.jpg" alt="Костюм 7"></div>
-                                                         <div class="dresscode-slide"><img class="dresscode-img" src="костюм8.jpg" alt="Костюм 8"></div>
-                                                                                                           <div class="dresscode-slide"><img class="dresscode-img" src="костюм9.jpg" alt="Костюм 9"></div>
-
-                            <div class="dresscode-slide"><img class="dresscode-img" src="костюм10.jpg" alt="Костюм 10"></div>
-
+                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм7.jpg" alt="Костюм 7"></div>
+                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм8.jpg" alt="Костюм 8"></div>
+                            <div class="dresscode-slide"><img class="dresscode-img" src="костюм9.jpg" alt="Костюм 9"></div>
+                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм10.jpg" alt="Костюм 10"></div>
 
                         </div>
                     </div>
@@ -957,14 +957,20 @@
             }, { threshold: 0.3 });
             timelineObserver.observe(document.getElementById('timelineBlock'));
 
-            // Функции для увеличенных слайдеров дресс-кода
+            // Функции для слайдеров
             window.slideDressPrev = (containerId) => {
                 const container = document.getElementById(containerId);
-                if (container) container.scrollBy({ left: -container.clientWidth * 0.85, behavior: 'smooth' });
+                if (container) {
+                    const scrollAmount = container.clientWidth * 0.85;
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
             };
             window.slideDressNext = (containerId) => {
                 const container = document.getElementById(containerId);
-                if (container) container.scrollBy({ left: container.clientWidth * 0.85, behavior: 'smooth' });
+                if (container) {
+                    const scrollAmount = container.clientWidth * 0.85;
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
             };
             
             window.slidePrev = (containerId) => {
