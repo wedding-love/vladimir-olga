@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -128,14 +127,15 @@
         /* ========== БЛОКИ ========== */
         .fullscreen-block {
             min-height: auto;
-            padding: 50px 30px;
+            padding: 70px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) 0.1s, transform 0.8s ease 0.1s;
+            will-change: transform, opacity;
         }
 
         .fullscreen-block.visible {
@@ -143,12 +143,56 @@
             transform: translateY(0);
         }
 
+        .fullscreen-block.visible .section-title,
+        .fullscreen-block.visible .invitation-text,
+        .fullscreen-block.visible .timeline-container,
+        .fullscreen-block.visible .location-container,
+        .fullscreen-block.visible .dresscode-text,
+        .fullscreen-block.visible .wishes-text,
+        .fullscreen-block.visible .contacts-text,
+        .fullscreen-block.visible .contact-person,
+        .fullscreen-block.visible .contact-phone,
+        .fullscreen-block.visible .countdown-timer,
+        .fullscreen-block.visible .countdown-message,
+        .fullscreen-block.visible .palette-wrapper,
+        .fullscreen-block.visible .survey-form,
+        .fullscreen-block.visible .pre-survey-text {
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .fullscreen-block.visible .section-title { animation-delay: 0.1s; }
+        .fullscreen-block.visible .invitation-text { animation-delay: 0.3s; }
+        .fullscreen-block.visible .timeline-container { animation-delay: 0.2s; }
+        .fullscreen-block.visible .location-container { animation-delay: 0.2s; }
+        .fullscreen-block.visible .dresscode-text { animation-delay: 0.2s; }
+        .fullscreen-block.visible .wishes-text { animation-delay: 0.2s; }
+        .fullscreen-block.visible .contacts-text { animation-delay: 0.2s; }
+        .fullscreen-block.visible .contact-person { animation-delay: 0.4s; }
+        .fullscreen-block.visible .contact-phone { animation-delay: 0.5s; }
+        .fullscreen-block.visible .countdown-timer { animation-delay: 0.2s; }
+        .fullscreen-block.visible .countdown-message { animation-delay: 0.4s; }
+        .fullscreen-block.visible .palette-wrapper { animation-delay: 0.3s; }
+        .fullscreen-block.visible .survey-form { animation-delay: 0.3s; }
+        .fullscreen-block.visible .pre-survey-text { animation-delay: 0.2s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .fullscreen-block:first-of-type {
-            padding-top: 65px;
+            padding-top: 85px;
         }
 
         .fullscreen-block:last-of-type {
-            padding-bottom: 65px;
+            padding-bottom: 85px;
         }
 
         .section-title {
@@ -156,7 +200,7 @@
             letter-spacing: 5px;
             font-weight: 300;
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             position: relative;
             display: inline-block;
             text-align: center;
@@ -165,7 +209,7 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
             width: 35px;
@@ -229,14 +273,14 @@
             width: 35px;
             height: 1px;
             background: var(--gold);
-            margin: 22px auto;
+            margin: 28px auto;
             opacity: 0.5;
         }
 
         .calendar-section {
             width: 100%;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .month-name {
@@ -244,7 +288,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 18px;
+            margin-bottom: 22px;
             font-weight: 300;
         }
 
@@ -295,7 +339,7 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 30px;
             position: relative;
         }
 
@@ -385,7 +429,7 @@
             height: 260px;
             border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 22px;
+            margin-bottom: 28px;
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
@@ -409,7 +453,7 @@
             font-weight: 200;
             letter-spacing: 1px;
             opacity: 0.6;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .map-button {
@@ -445,13 +489,13 @@
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .palette-row {
             display: flex;
             flex-direction: row;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             min-width: min-content;
             padding: 5px 5px 8px 5px;
@@ -473,14 +517,14 @@
 
         /* ========== СЛАЙДЕРЫ ========== */
         .slider-section {
-            padding: 15px 0;
+            padding: 10px 0;
             min-height: auto;
         }
 
         .slider-wrapper {
             width: 100%;
             position: relative;
-            padding: 0 45px;
+            padding: 0 50px;
         }
 
         .slider-container {
@@ -498,12 +542,12 @@
 
         .slider-track {
             display: flex;
-            gap: 16px;
-            padding: 0 5%;
+            gap: 12px;
+            padding: 0 2%;
         }
 
         .slide {
-            flex: 0 0 75%;
+            flex: 0 0 82%;
             scroll-snap-align: center;
             transition: transform 0.4s ease, opacity 0.4s ease;
             opacity: 0.7;
@@ -515,7 +559,6 @@
             transform: scale(1);
         }
 
-        /* Фото в дресс-коде — горизонтальные (широкие) */
         .horizontal-slide img {
             width: 100%;
             height: auto;
@@ -525,7 +568,6 @@
             border-radius: 4px;
         }
 
-        /* Фото пары — вертикальные (вытянутые вверх) */
         .vertical-slide img {
             width: 100%;
             height: auto;
@@ -539,8 +581,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             background: rgba(212, 175, 55, 0.2);
             border: 1px solid var(--gold);
             border-radius: 50%;
@@ -550,8 +592,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             color: var(--gold);
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
+            z-index: 5;
         }
 
         .slider-arrow:hover {
@@ -577,13 +620,23 @@
         }
 
         /* ========== АНКЕТА ГОСТЯ ========== */
+        .pre-survey-text {
+            font-size: clamp(13px, 3.5vw, 15px);
+            max-width: 550px;
+            margin: 0 auto 25px;
+            line-height: 1.85;
+            text-align: center;
+            opacity: 0.85;
+            color: var(--white);
+        }
+
         .survey-form {
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .form-group {
@@ -598,7 +651,7 @@
             letter-spacing: 2.5px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 300;
         }
 
@@ -606,7 +659,7 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 0;
+            padding: 12px 0;
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
@@ -622,31 +675,31 @@
 
         .form-textarea {
             resize: vertical;
-            min-height: 70px;
+            min-height: 80px;
             border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px;
+            padding: 12px;
             border-radius: 2px;
         }
 
         .checkbox-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 3px;
+            gap: 10px;
+            margin-top: 5px;
         }
 
         .checkbox-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
         }
 
         .checkbox-item input {
             appearance: none;
             -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border: 1px solid rgba(255,255,255,0.3);
             border-radius: 2px;
             cursor: pointer;
@@ -667,11 +720,11 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: var(--black);
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .checkbox-label {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 200;
             letter-spacing: 1px;
             color: var(--white);
@@ -680,22 +733,22 @@
         .radio-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 18px;
-            margin-top: 3px;
+            gap: 22px;
+            margin-top: 5px;
         }
 
         .radio-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
         }
 
         .radio-item input {
             appearance: none;
             -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border: 1px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             cursor: pointer;
@@ -709,7 +762,7 @@
         }
 
         .radio-label {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 200;
             letter-spacing: 1px;
             color: var(--white);
@@ -719,7 +772,7 @@
             background: transparent;
             border: 1px solid var(--gold);
             color: var(--white);
-            padding: 12px 38px;
+            padding: 14px 45px;
             font-family: 'Montserrat', sans-serif;
             font-size: 11px;
             letter-spacing: 4px;
@@ -744,9 +797,9 @@
             display: flex;
             align-items: baseline;
             justify-content: center;
-            gap: 8px;
+            gap: 12px;
             flex-wrap: nowrap;
-            margin: 15px 0;
+            margin: 20px 0;
             white-space: nowrap;
         }
 
@@ -761,18 +814,18 @@
             letter-spacing: 2px;
             text-transform: lowercase;
             opacity: 0.4;
-            margin-left: 3px;
+            margin-left: 4px;
         }
 
         .countdown-separator {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
             color: var(--gold);
             opacity: 0.6;
-            margin: 0 2px;
+            margin: 0 5px;
         }
 
         .countdown-message {
-            margin-top: 18px;
+            margin-top: 25px;
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             letter-spacing: 3px;
@@ -782,7 +835,7 @@
         /* ========== КОНТАКТЫ ========== */
         .contacts-text {
             font-size: 13px;
-            margin-bottom: 18px;
+            margin-bottom: 22px;
             opacity: 0.7;
             text-align: center;
         }
@@ -792,7 +845,7 @@
             font-weight: 300;
             letter-spacing: 2px;
             color: var(--gold);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .contact-phone {
@@ -810,40 +863,41 @@
         }
 
         @media (max-width: 768px) {
-            .fullscreen-block { padding: 40px 25px; }
-            .fullscreen-block:first-of-type { padding-top: 55px; }
-            .fullscreen-block:last-of-type { padding-bottom: 55px; }
+            .fullscreen-block { padding: 55px 30px; }
+            .fullscreen-block:first-of-type { padding-top: 70px; }
+            .fullscreen-block:last-of-type { padding-bottom: 70px; }
             .color-swatch { width: 40px; height: 40px; }
-            .palette-row { gap: 8px; }
-            .slider-wrapper { padding: 0 35px; }
-            .slide { flex: 0 0 80%; }
-            .countdown-timer { gap: 5px; }
+            .palette-row { gap: 10px; }
+            .slider-wrapper { padding: 0 38px; }
+            .slider-arrow { width: 34px; height: 34px; font-size: 18px; }
+            .slide { flex: 0 0 84%; }
+            .countdown-timer { gap: 8px; }
         }
 
         @media (max-width: 600px) {
             .color-swatch { width: 36px; height: 36px; }
-            .palette-row { gap: 6px; }
+            .palette-row { gap: 8px; }
         }
 
         @media (max-width: 480px) {
-            .fullscreen-block { padding: 35px 18px; }
-            .fullscreen-block:first-of-type { padding-top: 45px; }
+            .fullscreen-block { padding: 45px 20px; }
+            .fullscreen-block:first-of-type { padding-top: 60px; }
             .hero-names { font-size: 18px; letter-spacing: 3px; }
             .hero-info { bottom: 40px; left: 20px; }
             .color-swatch { width: 32px; height: 32px; }
-            .palette-row { gap: 5px; }
+            .palette-row { gap: 6px; }
             .timeline-container::before { left: 22px; }
             .timeline-icon-wrapper { width: 36px; height: 36px; }
             .timeline-icon { width: 16px; height: 16px; }
             .timeline-time { font-size: 15px; }
             .timeline-desc { font-size: 10px; }
-            .slider-wrapper { padding: 0 25px; }
-            .slider-arrow { width: 28px; height: 28px; font-size: 14px; }
-            .slide { flex: 0 0 85%; }
-            .countdown-timer { gap: 3px; }
+            .slider-wrapper { padding: 0 28px; }
+            .slider-arrow { width: 30px; height: 30px; font-size: 16px; }
+            .slide { flex: 0 0 86%; }
+            .countdown-timer { gap: 4px; }
             .countdown-number { font-size: 1.5rem; }
             .countdown-label { font-size: 0.55rem; }
-            .countdown-separator { font-size: 1rem; }
+            .countdown-separator { font-size: 1rem; margin: 0 2px; }
         }
     </style>
 </head>
@@ -871,8 +925,8 @@
         <section class="fullscreen-block" id="inviteBlock">
             <div class="invitation-text">
                 <p>Дорогие гости!</p>
-                <p style="margin-top: 18px;">Мы рады пригласить вас разделить с нами самый важный и счастливый момент нашей жизни. Пусть этот день станет началом новой прекрасной главы, которую мы хотим открыть в окружении самых близких и дорогих нам людей.</p>
-                <p style="margin-top: 18px;">Ваше присутствие сделает наш праздник по-настоящему особенным и незабываемым.</p>
+                <p style="margin-top: 22px;">Мы рады пригласить вас разделить с нами самый важный и счастливый момент нашей жизни. Пусть этот день станет началом новой прекрасной главы, которую мы хотим открыть в окружении самых близких и дорогих нам людей.</p>
+                <p style="margin-top: 22px;">Ваше присутствие сделает наш праздник по-настоящему особенным и незабываемым.</p>
             </div>
             <div class="invitation-divider"></div>
             <div class="calendar-section">
@@ -912,7 +966,7 @@
             </div>
         </section>
 
-        <!-- ДРЕСС-КОД с квадратиками оттенков -->
+        <!-- ДРЕСС-КОД -->
         <section class="fullscreen-block" id="dresscodeBlock">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-text">
@@ -975,8 +1029,9 @@
         <!-- АНКЕТА -->
         <section class="fullscreen-block" id="surveyBlock">
             <h2 class="section-title">Анкета гостя</h2>
-            <div class="invitation-text" style="font-size: 12px; max-width: 480px; margin-bottom: 25px;">
-                Пожалуйста, подтвердите своё присутствие до 15 июля
+            <div class="pre-survey-text">
+                <p>Мы очень стараемся сделать праздник незабываемым, поэтому будем рады, если Вы подтвердите свое присутствие и заполните анкету ниже, чтобы мы учли все детали:</p>
+                <p style="margin-top: 15px;">Пожалуйста, подтвердите свое присутствие до 15 июля, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
             </div>
             <form class="survey-form" id="guest-survey" action="https://formspree.io/f/mnjwebjo" method="POST">
                 <div class="form-group"><label class="form-label">Ваше имя и фамилия</label><input type="text" name="name" class="form-input" placeholder="Иван Иванов" required></div>
@@ -999,12 +1054,11 @@
                         <label class="checkbox-item"><input type="checkbox" name="drinks" value="Водка"><span class="checkbox-label">Водка</span></label>
                     </div>
                 </div>
-                <div class="form-group"><label class="form-label">Ваши пожелания</label><textarea class="form-textarea" name="wishes" placeholder="Тёплые слова..."></textarea></div>
                 <button type="submit" class="submit-button">Отправить</button>
             </form>
         </section>
 
-        <!-- ТАЙМЕР (одна строка) -->
+        <!-- ТАЙМЕР -->
         <section class="fullscreen-block countdown-section" id="timerBlock">
             <h2 class="section-title">До свадьбы осталось</h2>
             <div class="countdown-timer">
@@ -1016,7 +1070,7 @@
                 <span class="countdown-separator">:</span>
                 <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">сек</span></div>
             </div>
-            <div class="countdown-message">ждём вас</div>
+            <div class="countdown-message">Ждём вас!</div>
         </section>
 
         <!-- КОНТАКТЫ -->
@@ -1084,18 +1138,21 @@
             const blockObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        const delay = Array.from(allBlocks).indexOf(entry.target) * 0.1;
+                        entry.target.style.transitionDelay = `${delay}s`;
                         entry.target.classList.add('visible');
                         blockObserver.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+            
             allBlocks.forEach(block => blockObserver.observe(block));
 
             const timelineObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         timelineItems.forEach((item, idx) => {
-                            setTimeout(() => item.classList.add('show'), idx * 100);
+                            setTimeout(() => item.classList.add('show'), idx * 120);
                         });
                         timelineObserver.unobserve(entry.target);
                     }
