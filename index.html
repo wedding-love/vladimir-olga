@@ -408,7 +408,7 @@
             display: none;
         }
 
-        /* ИСПРАВЛЕННЫЙ СЛАЙДЕР ДЛЯ ДРЕСС-КОДА — с центрированием и отступами */
+        /* ===== ИСПРАВЛЕННЫЙ СЛАЙДЕР ДЛЯ ДРЕСС-КОДА: идеальное центрирование, без черных зон ===== */
         .dresscode-slider-wrapper {
             width: 100%;
             position: relative;
@@ -421,20 +421,22 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             padding: 8px 0;
-            scroll-padding: 0 15%;
+            /* Ключевой момент: отступы для центрирования */
+            scroll-padding: 0 calc(50% - 130px);
         }
         .dresscode-slider-container::-webkit-scrollbar { display: none; }
         .dresscode-slider-track {
             display: flex;
             gap: 20px;
-            padding: 0 calc(50% - 36%);
+            /* Динамический отступ, который гарантирует центрирование первого и последнего слайда */
+            padding: 0 calc(50% - min(35%, 180px));
         }
         .dresscode-slide {
-            flex: 0 0 72%;
+            flex: 0 0 280px;
             scroll-snap-align: center;
             transition: transform 0.4s ease, opacity 0.4s ease;
-            opacity: 0.7;
-            transform: scale(0.96);
+            opacity: 0.6;
+            transform: scale(0.92);
         }
         .dresscode-slide.active-slide {
             opacity: 1;
@@ -476,7 +478,7 @@
         .dresscode-arrow-prev { left: 10px; }
         .dresscode-arrow-next { right: 10px; }
 
-        /* Слайдер для фото пары (обычный) */
+        /* Слайдер для фото пары (улучшенное центрирование) */
         .slider-wrapper {
             width: 100%;
             position: relative;
@@ -489,19 +491,20 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             padding: 8px 0;
+            scroll-padding: 0 calc(50% - 140px);
         }
         .slider-container::-webkit-scrollbar { display: none; }
         .slider-track {
             display: flex;
-            gap: 12px;
-            padding: 0 2%;
+            gap: 20px;
+            padding: 0 calc(50% - min(35%, 200px));
         }
         .slide {
-            flex: 0 0 82%;
+            flex: 0 0 300px;
             scroll-snap-align: center;
             transition: transform 0.4s ease, opacity 0.4s ease;
-            opacity: 0.7;
-            transform: scale(0.96);
+            opacity: 0.6;
+            transform: scale(0.92);
         }
         .slide.active-slide { opacity: 1; transform: scale(1); }
         .slide-img {
@@ -635,21 +638,24 @@
             100% { opacity: 0; transform: scale(1.5); }
         }
 
+        /* Адаптивные настройки для мобильных устройств */
         @media (max-width: 768px) {
             .fullscreen-block { padding: 55px 30px; }
             .color-swatch { width: 40px; height: 40px; }
             .palette-row { gap: 10px; }
-            .dresscode-slide { flex: 0 0 80%; }
-            .dresscode-slider-track { padding: 0 calc(50% - 40%); }
+            .dresscode-slide { flex: 0 0 240px; }
+            .dresscode-slider-track { padding: 0 calc(50% - 120px); }
+            .slider-track { padding: 0 calc(50% - 130px); }
+            .slide { flex: 0 0 260px; }
             .dresscode-slider-arrow { width: 36px; height: 36px; font-size: 20px; }
-            .dresscode-arrow-prev { left: 5px; }
-            .dresscode-arrow-next { right: 5px; }
         }
         @media (max-width: 600px) {
             .color-swatch { width: 36px; height: 36px; }
             .palette-row { gap: 8px; }
-            .dresscode-slide { flex: 0 0 88%; }
-            .dresscode-slider-track { padding: 0 calc(50% - 44%); }
+            .dresscode-slide { flex: 0 0 220px; }
+            .dresscode-slider-track { padding: 0 calc(50% - 110px); }
+            .slide { flex: 0 0 240px; }
+            .slider-track { padding: 0 calc(50% - 120px); }
         }
         @media (max-width: 480px) {
             .fullscreen-block { padding: 45px 20px; }
@@ -659,8 +665,10 @@
             .timeline-icon-wrapper { width: 36px; height: 36px; }
             .timeline-icon { width: 16px; height: 16px; }
             .timeline-time { font-size: 15px; }
-            .dresscode-slide { flex: 0 0 92%; }
-            .dresscode-slider-track { padding: 0 calc(50% - 46%); }
+            .dresscode-slide { flex: 0 0 200px; }
+            .dresscode-slider-track { padding: 0 calc(50% - 100px); }
+            .slide { flex: 0 0 220px; }
+            .slider-track { padding: 0 calc(50% - 110px); }
             .dresscode-slider-arrow { width: 32px; height: 32px; font-size: 18px; }
         }
     </style>
@@ -732,7 +740,7 @@
             </div>
         </section>
 
-        <!-- ДРЕСС-КОД с исправленным слайдером (центрирование) -->
+        <!-- ДРЕСС-КОД (удален костюм 6, исправлено центрирование) -->
         <section class="fullscreen-block" id="dresscodeBlock">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-text">
@@ -773,7 +781,7 @@
                 </div>
             </div>
 
-            <!-- Галерея костюмов -->
+            <!-- Галерея костюмов (удален костюм6.jpg) -->
             <div id="gallery-suit" class="gallery-container gallery-hidden">
                 <div class="dresscode-slider-wrapper">
                     <div class="dresscode-slider-arrow dresscode-arrow-prev" onclick="slideDressPrev('suitSlider')">‹</div>
@@ -784,12 +792,10 @@
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм2.jpg" alt="Костюм 2"></div>
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм3.jpg" alt="Костюм 3"></div>
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм5.jpg" alt="Костюм 5"></div>
-                            <div class="dresscode-slide"><img class="dresscode-img" src="костюм6.jpg" alt="Костюм 6"></div>
-                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм7.jpg" alt="Костюм 7"></div>
-                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм8.jpg" alt="Костюм 8"></div>
+                            <div class="dresscode-slide"><img class="dresscode-img" src="костюм7.jpg" alt="Костюм 7"></div>
+                            <div class="dresscode-slide"><img class="dresscode-img" src="костюм8.jpg" alt="Костюм 8"></div>
                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм9.jpg" alt="Костюм 9"></div>
-                             <div class="dresscode-slide"><img class="dresscode-img" src="костюм10.jpg" alt="Костюм 10"></div>
-
+                            <div class="dresscode-slide"><img class="dresscode-img" src="костюм10.jpg" alt="Костюм 10"></div>
                         </div>
                     </div>
                 </div>
@@ -822,8 +828,10 @@
         <section class="fullscreen-block" id="surveyBlock">
             <h2 class="section-title">Анкета гостя</h2>
             <div class="pre-survey-text">
-                <p>Пожалуйста, подтвердите свое присутствие до 15 июля, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
-                <p style="margin-top: 12px;">Мы очень стараемся сделать праздник незабываемым, поэтому будем рады, если Вы заполните анкету ниже, чтобы мы учли все детали:</p>
+               
+            <p style="margin-top: 12px;">Мы очень стараемся сделать праздник незабываемым, поэтому будем рады, если Вы заполните анкету ниже, чтобы мы учли все детали:</p>
+                            <p>Пожалуйста, подтвердите свое присутствие до 15 июля, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
+
             </div>
             <form class="survey-form" id="guest-survey" action="https://formspree.io/f/mnjwebjo" method="POST">
                 <div class="form-group"><label class="form-label">Ваше имя и фамилия</label><input type="text" name="name" class="form-input" placeholder="Иван Иванов" required></div>
@@ -875,6 +883,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // ... (весь предыдущий код остаётся без изменений, кроме удаления костюма6 и улучшения слайдеров)
             const openBtn = document.getElementById('open-btn');
             const envelopeOverlay = document.getElementById('envelope-overlay');
             const mainContent = document.getElementById('main-content');
@@ -957,29 +966,39 @@
             }, { threshold: 0.3 });
             timelineObserver.observe(document.getElementById('timelineBlock'));
 
-            // Функции для слайдеров
+            // Функции для слайдеров (обновлены для лучшего UX)
             window.slideDressPrev = (containerId) => {
                 const container = document.getElementById(containerId);
                 if (container) {
-                    const scrollAmount = container.clientWidth * 0.85;
-                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    const slideWidth = container.querySelector('.dresscode-slide')?.offsetWidth || 280;
+                    const gap = 20;
+                    container.scrollBy({ left: -(slideWidth + gap), behavior: 'smooth' });
                 }
             };
             window.slideDressNext = (containerId) => {
                 const container = document.getElementById(containerId);
                 if (container) {
-                    const scrollAmount = container.clientWidth * 0.85;
-                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    const slideWidth = container.querySelector('.dresscode-slide')?.offsetWidth || 280;
+                    const gap = 20;
+                    container.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
                 }
             };
             
             window.slidePrev = (containerId) => {
                 const container = document.getElementById(containerId);
-                if (container) container.scrollBy({ left: -container.clientWidth * 0.8, behavior: 'smooth' });
+                if (container) {
+                    const slideWidth = container.querySelector('.slide')?.offsetWidth || 300;
+                    const gap = 20;
+                    container.scrollBy({ left: -(slideWidth + gap), behavior: 'smooth' });
+                }
             };
             window.slideNext = (containerId) => {
                 const container = document.getElementById(containerId);
-                if (container) container.scrollBy({ left: container.clientWidth * 0.8, behavior: 'smooth' });
+                if (container) {
+                    const slideWidth = container.querySelector('.slide')?.offsetWidth || 300;
+                    const gap = 20;
+                    container.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
+                }
             };
 
             function initDresscodeSlider(containerId) {
@@ -988,12 +1007,12 @@
                 const slides = container.querySelectorAll('.dresscode-slide');
                 const updateActiveSlide = () => {
                     const containerRect = container.getBoundingClientRect();
+                    const containerCenter = containerRect.left + containerRect.width / 2;
                     let bestIndex = 0, bestDistance = Infinity;
                     slides.forEach((slide, idx) => {
                         const rect = slide.getBoundingClientRect();
-                        const center = rect.left + rect.width / 2;
-                        const containerCenter = containerRect.left + containerRect.width / 2;
-                        const distance = Math.abs(center - containerCenter);
+                        const slideCenter = rect.left + rect.width / 2;
+                        const distance = Math.abs(slideCenter - containerCenter);
                         if (distance < bestDistance) { bestDistance = distance; bestIndex = idx; }
                     });
                     slides.forEach((slide, idx) => {
@@ -1012,12 +1031,12 @@
                 const slides = container.querySelectorAll('.slide');
                 const updateActiveSlide = () => {
                     const containerRect = container.getBoundingClientRect();
+                    const containerCenter = containerRect.left + containerRect.width / 2;
                     let bestIndex = 0, bestDistance = Infinity;
                     slides.forEach((slide, idx) => {
                         const rect = slide.getBoundingClientRect();
-                        const center = rect.left + rect.width / 2;
-                        const containerCenter = containerRect.left + containerRect.width / 2;
-                        const distance = Math.abs(center - containerCenter);
+                        const slideCenter = rect.left + rect.width / 2;
+                        const distance = Math.abs(slideCenter - containerCenter);
                         if (distance < bestDistance) { bestDistance = distance; bestIndex = idx; }
                     });
                     slides.forEach((slide, idx) => {
