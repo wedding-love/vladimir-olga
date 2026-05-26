@@ -543,7 +543,7 @@
         .arrow-prev { left: 0; }
         .arrow-next { right: 0; }
 
-        /* Пожелания */
+        /* Пожелания (обновленный текст) */
         .wishes-text {
             font-size: clamp(13px, 3.5vw, 15px);
             max-width: 520px;
@@ -740,7 +740,7 @@
             </div>
         </section>
 
-        <!-- ДРЕСС-КОД (удален костюм 6, стрелка вправо скрывается после последнего фото) -->
+        <!-- ДРЕСС-КОД -->
         <section class="fullscreen-block" id="dresscodeBlock">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-text">
@@ -800,15 +800,16 @@
             </div>
         </section>
 
+        <!-- БЛОК ПОЖЕЛАНИЙ С НОВЫМ ТЕКСТОМ -->
         <section class="fullscreen-block" id="wishesBlock">
             <h2 class="section-title">Пожелания</h2>
             <div class="wishes-text">
                 <p>Мы очень любим цветы, но перед отъездом, к сожалению, не успеем насладиться их красотой в полной мере.</p>
-                <p> Поэтому, если вы захотите дополнить подарок, будем рады бутылочке любимого напитка с тёплой запиской о том, по какому особому поводу открыть её!</p>
+                <p>Поэтому, если вы захотите дополнить подарок, будем рады бутылочке любимого напитка с тёплой запиской о том, по какому особому поводу открыть её!</p>
             </div>
         </section>
 
-        <!-- Слайдер с фото пары (большой, как был изначально) -->
+        <!-- Слайдер с фото пары -->
         <section class="slider-section" style="background-color: var(--black);" id="coupleSliderBlock">
             <div class="slider-wrapper">
                 <div class="slider-arrow arrow-prev" onclick="slidePrev('coupleSlider')">‹</div>
@@ -823,7 +824,7 @@
             </div>
         </section>
 
-        <!-- АНКЕТА ГОСТЯ (исправлен порядок: сначала "Мы стараемся", потом "Подтвердите") -->
+        <!-- АНКЕТА ГОСТЯ -->
         <section class="fullscreen-block" id="surveyBlock">
             <h2 class="section-title">Анкета гостя</h2>
             <div class="survey-intro">
@@ -849,8 +850,7 @@
                         <label class="checkbox-item"><input type="checkbox" name="drinks" value="Виски"><span class="checkbox-label">Виски</span></label>
                         <label class="checkbox-item"><input type="checkbox" name="drinks" value="Коньяк"><span class="checkbox-label">Коньяк</span></label>
                         <label class="checkbox-item"><input type="checkbox" name="drinks" value="Водка"><span class="checkbox-label">Водка</span></label>
-                                           <label class="checkbox-item"><input type="checkbox" name="drinks" value="Геральт мейстер"><span class="checkbox-label">Геральт мейстер</span></label>
-
+                        <label class="checkbox-item"><input type="checkbox" name="drinks" value="Геральт мейстер"><span class="checkbox-label">Геральт мейстер</span></label>
                     </div>
                 </div>
                 <button type="submit" class="submit-button">Отправить</button>
@@ -982,7 +982,7 @@
                 }
             }
 
-            // Навигация для слайдера дресс-кода с контролем видимости стрелок
+            // Навигация для слайдера дресс-кода
             function initDresscodeSliderWithArrows(containerId, prevArrowId, nextArrowId) {
                 const container = document.getElementById(containerId);
                 const prevArrow = document.getElementById(prevArrowId);
